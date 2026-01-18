@@ -1,9 +1,262 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Hello World</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bramium | Cute Glowing Fruit Lamps</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #a1a1aa;
+      --accent: #7c3aed;
+      --accent2: #22c55e;
+      --shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    a { color: inherit; text-decoration: none; }
+    .container {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+    header {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 22px;
+    }
+    nav a {
+      margin-left: 20px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .hero {
+      padding: 60px 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 44px;
+      margin: 0 0 15px;
+      line-height: 1.1;
+    }
+    .hero p {
+      margin: 0 0 25px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      background: var(--accent);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text);
+      margin-left: 12px;
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.6), rgba(34,197,94,0.4));
+      height: 360px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-img::after {
+      content: "Placeholder Image";
+      color: rgba(255,255,255,0.8);
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      padding: 22px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .gallery-item {
+      background: var(--card);
+      height: 200px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.8);
+      font-weight: 600;
+    }
+
+    .faq {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .faq-item {
+      background: var(--card);
+      padding: 18px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .faq-item h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .faq { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, World!</h1>
+
+  <header class="container">
+    <div class="logo">Bramium</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Cute 3D Printed Fruit Lamps That Glow</h1>
+        <p>Soft light, perfect for bedrooms, desks, and gifts. Handmade 3D printed fruit lamps with a warm glow.</p>
+        <a class="btn" href="https://your-store-link.com" target="_blank">Buy Now ($25–$30)</a>
+        <a class="btn secondary" href="#faq">Learn More</a>
+      </div>
+      <div class="hero-img"></div>
+    </section>
+
+    <section id="features">
+      <h2>Why People Love Bramium</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Soft Glow Light</h3>
+          <p>Diffused lighting creates a warm, cozy atmosphere without harsh brightness.</p>
+        </div>
+        <div class="card">
+          <h3>3D Printed Design</h3>
+          <p>Unique fruit shapes that look great on any desk or nightstand.</p>
+        </div>
+        <div class="card">
+          <h3>Perfect Gift</h3>
+          <p>Great for birthdays, home decor, or just to brighten someone’s day.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>Product Gallery (Placeholder)</h2>
+      <div class="gallery">
+        <div class="gallery-item">Blueberry</div>
+        <div class="gallery-item">Strawberry</div>
+        <div class="gallery-item">Dragon Fruit</div>
+        <div class="gallery-item">Watermelon</div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h4>How do I power it?</h4>
+          <p>Each lamp comes with a USB cable. Just plug it in and turn it on.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What material is it made from?</h4>
+          <p>High-quality PLA with a milky finish for the best glow.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How long does shipping take?</h4>
+          <p>Shipping depends on your location. Usually 5–10 business days.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I return it?</h4>
+          <p>Yes. Returns accepted within 14 days if unused and undamaged.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Questions? Email us at <strong>support@bramium.com</strong> (placeholder).</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Bramium. All rights reserved.
+  </footer>
+
 </body>
 </html>
