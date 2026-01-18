@@ -17,39 +17,58 @@
 }
 *{box-sizing:border-box;}
 body{margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--text);}
-.container{width:min(1200px, 95%); margin:0 auto;}
+
+/* ——— Carousel ——— */
+.carousel{position:relative; width:100%; height:320px; overflow:hidden; margin:0 auto; background:#ddd;}
+.carousel .slides{display:flex; transition:transform 0.5s ease;}
+.carousel .slide{min-width:100%; height:320px; display:flex; align-items:center; justify-content:center; font-size:32px; color:white; font-weight:700;}
+.slide1{background:#7c3aed;}
+.slide2{background:#22c55e;}
+.slide3{background:#2563eb;}
+.carousel .arrow{position:absolute; top:50%; transform:translateY(-50%); font-size:28px; color:white; background:rgba(0,0,0,0.4); padding:8px 12px; cursor:pointer; border:none; border-radius:4px;}
+.carousel .prev{left:16px;}
+.carousel .next{right:16px;}
+
+/* ——— Header ——— */
 header{padding:15px 0; display:flex; justify-content:space-between; align-items:center; background:white; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .logo{font-weight:700; font-size:24px; color:var(--accent);}
-nav a{margin-left:20px; color:var(--muted); font-size:15px; text-decoration:none; transition:0.2s;}
-nav a:hover{color:var(--accent);}
-.search-bar{display:flex; align-items:center; gap:10px;}
-.search-bar input{padding:10px 14px; border-radius:12px; border:1px solid #ccc; width:250px;}
-.btn{padding:10px 18px; border-radius:12px; font-weight:600; background:var(--accent); color:white; border:none; cursor:pointer; transition:0.2s;}
-.btn:hover{opacity:0.9;}
+nav a{margin-left:20px; color:var(--muted); font-size:15px; text-decoration:none;}
+.search-bar{display:flex; gap:10px;}
+.search-bar input{padding:10px 14px; border-radius:12px; border:1px solid #ccc; width:220px;}
+.btn{padding:10px 18px; border-radius:12px; font-weight:600; background:var(--accent); color:white; border:none; cursor:pointer;}
+
+/* ——— Filters/Grid ——— */
 .filters{display:flex; gap:12px; overflow-x:auto; padding:15px 0;}
-.filter{padding:10px 16px; border-radius:999px; background:white; border:1px solid #e5e7eb; color:var(--text); cursor:pointer; flex-shrink:0; transition:0.2s;}
+.filter{padding:10px 16px; border-radius:999px; background:white; border:1px solid #e5e7eb; color:var(--text); cursor:pointer;}
 .filter.active{border-color:var(--accent); background:rgba(124,58,237,0.1); color:var(--accent);}
 .products{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:20px; padding:20px 0;}
-.product{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:16px; display:flex; flex-direction:column; gap:12px; transition:transform 0.2s;}
-.product:hover{transform:translateY(-5px);}
-.product-img{height:180px; border-radius:12px; background:linear-gradient(135deg, rgba(124,58,237,0.3), rgba(34,197,94,0.2)); display:flex; align-items:center; justify-content:center; color:rgba(0,0,0,0.6); font-weight:700; font-size:20px;}
-.product h3{margin:0; font-size:18px;}
-.product p{margin:0; color:var(--muted); font-size:14px;}
+.product{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:16px; display:flex; flex-direction:column; gap:12px;}
+.product:hover{transform:translateY(-5px); transition:0.2s;}
+.product-img{height:180px; border-radius:12px; background:#eef; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:20px;}
 .price{font-weight:700; font-size:16px;}
 .actions{display:flex; justify-content:space-between; align-items:center;}
-.cart-btn{position:fixed; right:20px; bottom:20px; padding:14px 20px; border-radius:16px; background:var(--accent2); color:white; font-weight:700; border:none; cursor:pointer; box-shadow:var(--shadow);}
-.cart-drawer{position:fixed; right:0; top:0; height:100%; width:360px; background:white; box-shadow:-5px 0 25px rgba(0,0,0,0.15); transform:translateX(100%); transition:transform 0.3s ease; padding:20px; display:flex; flex-direction:column; gap:14px; z-index:99;}
+
+/* ——— Cart ——— */
+.cart-btn{position:fixed; right:20px; bottom:20px; padding:14px 20px; border-radius:16px; background:var(--accent2); color:white; font-weight:700; border:none;}
+.cart-drawer{position:fixed; right:0; top:0; height:100%; width:360px; background:white; box-shadow:-5px 0 25px rgba(0,0,0,0.15); transform:translateX(100%); transition:transform 0.3s ease; padding:20px; display:flex; flex-direction:column;}
 .cart-drawer.open{transform:translateX(0);}
-.cart-drawer h2{margin:0; font-size:20px;}
-.cart-item{display:flex; justify-content:space-between; gap:10px; padding:10px; border-radius:12px; background:#f3f4f6;}
-.cart-item span{color:var(--muted); font-size:14px;}
-.cart-total{margin-top:auto; padding-top:10px; border-top:1px solid #e5e7eb;}
-.checkout{width:100%; padding:12px 0; border-radius:14px; background:var(--accent); color:white; border:none; font-weight:700; cursor:pointer; margin-top:10px;}
-@media (max-width:768px){.search-bar input{width:140px;}}
+.cart-item{display:flex; justify-content:space-between; padding:10px; background:#f3f4f6; border-radius:12px;}
 </style>
 </head>
 <body>
 
+<!-- ——— Slider ——— -->
+<div class="carousel" id="carousel">
+  <div class="slides">
+    <div class="slide slide1">NEW ARRIVALS</div>
+    <div class="slide slide2">BEST SELLERS</div>
+    <div class="slide slide3">LIMITED OFFERS</div>
+  </div>
+  <button class="arrow prev" id="prev">&#10094;</button>
+  <button class="arrow next" id="next">&#10095;</button>
+</div>
+
+<!-- ——— Header ——— -->
 <header class="container">
   <div class="logo">Bramium</div>
   <nav>
@@ -63,6 +82,7 @@ nav a:hover{color:var(--accent);}
   </div>
 </header>
 
+<!-- ——— Filters + Products ——— -->
 <main class="container" id="store">
   <div class="filters" id="filters">
     <div class="filter active" data-filter="all">All</div>
@@ -71,45 +91,39 @@ nav a:hover{color:var(--accent);}
     <div class="filter" data-filter="dragonfruit">Dragon Fruit</div>
     <div class="filter" data-filter="watermelon">Watermelon</div>
   </div>
-
   <div class="products" id="products"></div>
 </main>
 
-<!-- Cart Drawer -->
+<!-- ——— Cart Drawer ——— -->
 <div class="cart-drawer" id="cartDrawer">
   <h2>Your Cart</h2>
   <div id="cartItems"></div>
-  <div class="cart-total">
+  <div style="margin-top:auto; border-top:1px solid #e5e7eb; padding-top:10px;">
     <div style="display:flex; justify-content:space-between; font-weight:700;">
-      <span>Total</span>
-      <span id="cartTotal">$0</span>
+      <span>Total</span><span id="cartTotal">$0</span>
     </div>
-    <button class="checkout" id="checkoutBtn">Checkout</button>
+    <button class="btn" id="checkoutBtn">Checkout</button>
   </div>
 </div>
-
 <button class="cart-btn" id="cartBtn">Open Cart</button>
 
-<section class="container" id="faq">
-  <h2>FAQ</h2>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:20px 0;">
-    <div class="card">
-      <h3>How do I power it?</h3>
-      <p>Each lamp comes with a USB cable. Plug in and turn on.</p>
-    </div>
-    <div class="card">
-      <h3>What material is it made from?</h3>
-      <p>High-quality PLA for a soft glow.</p>
-    </div>
-  </div>
-</section>
-
-<section class="container" id="contact">
-  <h2>Contact</h2>
-  <p>Email: support@bramium.com (placeholder)</p>
-</section>
-
 <script>
+// ——— Slider Logic ———
+let index = 0;
+const slides = document.querySelector('.slides');
+const total = document.querySelectorAll('.slide').length;
+
+function showSlide(i){
+  index = (i + total) % total;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}
+document.getElementById('prev').onclick = () => showSlide(index - 1);
+document.getElementById('next').onclick = () => showSlide(index + 1);
+
+// Auto rotate
+setInterval(()=> showSlide(index + 1), 4000);
+
+// ——— Store + Cart Logic ———
 const products = [
   { id: 1, name: "Blueberry Lamp", type: "blueberry", price: 25, desc: "Soft glowing blueberry lamp." },
   { id: 2, name: "Strawberry Lamp", type: "strawberry", price: 27, desc: "Cute strawberry glow lamp." },
@@ -121,57 +135,44 @@ const products = [
 
 let cart = [];
 const productsEl = document.getElementById("products");
-const cartBtn = document.getElementById("cartBtn");
-const cartDrawer = document.getElementById("cartDrawer");
 const cartItemsEl = document.getElementById("cartItems");
 const cartTotalEl = document.getElementById("cartTotal");
 const cartOpenBtn = document.getElementById("cartOpen");
-const checkoutBtn = document.getElementById("checkoutBtn");
-const searchEl = document.getElementById("search");
 
 function renderProducts(filter="all", search=""){
-  productsEl.innerHTML = "";
-  const filtered = products.filter(p => (filter==="all"||p.type===filter) && p.name.toLowerCase().includes(search.toLowerCase()));
-  filtered.forEach(p=>{
-    const card = document.createElement("div");
-    card.className="product";
-    card.innerHTML=`
-      <div class="product-img">${p.type.toUpperCase()}</div>
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-      <div class="actions">
-        <div class="price">$${p.price}</div>
-        <button class="btn" onclick="addToCart(${p.id})">Add</button>
-      </div>
-    `;
-    productsEl.appendChild(card);
-  });
+  productsEl.innerHTML="";
+  products.filter(p=> (filter==="all"||p.type===filter) && p.name.toLowerCase().includes(search.toLowerCase()))
+    .forEach(p=>{
+      const card=document.createElement("div");
+      card.className="product";
+      card.innerHTML=`
+        <div class="product-img">${p.type.toUpperCase()}</div>
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <div class="actions">
+          <div class="price">$${p.price}</div>
+          <button class="btn" onclick="addToCart(${p.id})">Add</button>
+        </div>
+      `;
+      productsEl.appendChild(card);
+    });
 }
-
 function addToCart(id){
-  const product = products.find(p=>p.id===id);
-  const existing = cart.find(item=>item.id===id);
-  if(existing) existing.qty++;
-  else cart.push({...product, qty:1});
+  const product=products.find(p=>p.id===id);
+  const existing=cart.find(i=>i.id===id);
+  if(existing) existing.qty++; else cart.push({...product,qty:1});
   updateCart();
 }
-
 function updateCart(){
   cartItemsEl.innerHTML="";
   let total=0;
   cart.forEach(item=>{
-    total+=item.price*item.qty;
+    total+=(item.price*item.qty);
     const itemEl=document.createElement("div");
     itemEl.className="cart-item";
     itemEl.innerHTML=`
-      <div>
-        <div style="font-weight:700;">${item.name}</div>
-        <span>Qty: ${item.qty}</span>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-weight:700;">$${item.price*item.qty}</div>
-        <span style="cursor:pointer; color:var(--accent);" onclick="removeFromCart(${item.id})">Remove</span>
-      </div>
+      <div><div style="font-weight:700;">${item.name}</div><span>Qty: ${item.qty}</span></div>
+      <div style="text-align:right;"><div style="font-weight:700;">$${item.price*item.qty}</div></div>
     `;
     cartItemsEl.appendChild(itemEl);
   });
@@ -179,24 +180,23 @@ function updateCart(){
   cartOpenBtn.innerText=`Cart (${cart.reduce((s,i)=>s+i.qty,0)})`;
 }
 
-function removeFromCart(id){
-  cart=cart.filter(item=>item.id!==id);
-  updateCart();
-}
-
-cartBtn.addEventListener("click",()=>{cartDrawer.classList.toggle("open");});
-cartOpenBtn.addEventListener("click",()=>{cartDrawer.classList.toggle("open");});
-checkoutBtn.addEventListener("click",()=>{window.open("https://your-store-link.com","_blank");});
-
+renderProducts();
 document.getElementById("filters").addEventListener("click",e=>{
   if(!e.target.classList.contains("filter")) return;
   document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));
   e.target.classList.add("active");
-  renderProducts(e.target.dataset.filter, searchEl.value);
+  renderProducts(e.target.dataset.filter, document.getElementById("search").value);
 });
-searchEl.addEventListener("input",()=>{renderProducts(document.querySelector(".filter.active").dataset.filter, searchEl.value);});
+document.getElementById("search").oninput = e=>{
+  renderProducts(document.querySelector(".filter.active").dataset.filter, e.target.value);
+};
 
-renderProducts();
+document.getElementById("cartBtn").onclick = ()=>{
+  document.getElementById("cartDrawer").classList.toggle("open");
+};
+document.getElementById("cartOpen").onclick = ()=>{
+  document.getElementById("cartDrawer").classList.toggle("open");
+};
 </script>
 
 </body>
