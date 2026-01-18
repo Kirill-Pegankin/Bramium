@@ -6,183 +6,222 @@
 <title>Bramium Store</title>
 <style>
 :root{
-  --bg:#f3f4f6;
-  --card:#fff;
-  --text:#111827;
-  --muted:#6b7280;
+  --bg:#0b0b12;
+  --card:#0f172a;
+  --text:#e5e7eb;
+  --muted:#a1a1aa;
   --accent:#7c3aed;
-  --shadow:0 5px 15px rgba(0,0,0,0.1);
+  --shadow:0 10px 30px rgba(0,0,0,0.4);
 }
+
 *{box-sizing:border-box;}
-body{margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--text);}
+body{
+  margin:0;
+  font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
 /* HEADER */
 .header{
   position:sticky;
   top:0;
   z-index:100;
-  background:#fff;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  background:rgba(10, 12, 20, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
+
 .header-top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 20px;
+  padding:14px 22px;
 }
-.logo{font-weight:700; font-size:24px; color:var(--accent); cursor:pointer;}
-.search{flex:1; margin:0 20px; display:flex; align-items:center;}
+
+.logo{
+  font-weight:800;
+  font-size:26px;
+  color:var(--accent);
+  cursor:pointer;
+}
+
+.search{
+  flex:1;
+  margin:0 20px;
+}
+
 .search input{
   width:100%;
   padding:10px 14px;
-  border-radius:6px;
-  border:1px solid #ccc;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.05);
+  color:var(--text);
 }
-.header-right{display:flex; gap:16px; align-items:center; font-size:14px;}
-.header-right div{cursor:pointer;}
 
-/* SECOND NAV BAR */
-.navbar{
+.header-right{
   display:flex;
   gap:18px;
-  padding:10px 20px;
-  background:#232f3e;
-  color:#fff;
   font-size:14px;
+  color:var(--muted);
 }
-.navbar div{cursor:pointer;}
+
+.header-right div{
+  cursor:pointer;
+}
 
 /* HERO */
 .hero{
-  position:relative;
-  height:320px;
-  overflow:hidden;
+  padding:40px 22px;
+  text-align:left;
 }
-.slides{display:flex; transition:transform 0.7s ease;}
-.slide{
-  min-width:100%;
-  height:320px;
+
+.hero h1{
+  font-size:42px;
+  margin:0 0 10px;
+  font-weight:800;
+}
+
+.hero p{
+  margin:0;
+  color:var(--muted);
+  font-size:16px;
+}
+
+/* CATEGORY BAR */
+.navbar{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:32px;
-  color:#fff;
-  font-weight:700;
+  gap:14px;
+  padding:14px 22px;
+  overflow-x:auto;
+  border-top:1px solid rgba(255,255,255,0.06);
 }
-.slide1{background:#7c3aed;}
-.slide2{background:#22c55e;}
-.slide3{background:#2563eb;}
-.arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.4);
-  color:#fff;
-  border:none;
-  padding:10px 14px;
+
+.navbar div{
   cursor:pointer;
-  border-radius:4px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  color:var(--muted);
+  font-size:14px;
 }
-.prev{left:16px;}
-.next{right:16px;}
 
-/* PROMO CARDS UNDER HERO */
-.promo{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  padding:18px 20px;
+.navbar div:hover{
+  background:rgba(124,58,237,0.2);
+  color:#fff;
 }
-.card{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  box-shadow:var(--shadow);
-}
-.card h4{margin:0 0 8px;}
-.card p{margin:0; color:var(--muted); font-size:14px;}
 
-/* PRODUCTS GRID */
-.container{width:min(1200px,95%); margin:0 auto;}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:20px;
+/* PRODUCTS */
+.container{
+  width:min(1200px, 95%);
+  margin:0 auto;
   padding:20px 0 60px;
 }
-.product{
-  background:#fff;
-  padding:16px;
-  border-radius:12px;
-  box-shadow:var(--shadow);
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+  gap:18px;
 }
+
+.product{
+  background:var(--card);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  transition:transform 0.2s ease;
+}
+
+.product:hover{
+  transform:translateY(-4px);
+}
+
 .product-img{
-  height:180px;
-  background:linear-gradient(135deg, rgba(124,58,237,0.2), rgba(34,197,94,0.2));
-  border-radius:12px;
+  height:190px;
+  background:linear-gradient(135deg, rgba(124,58,237,0.35), rgba(34,197,94,0.25));
   display:flex;
   align-items:center;
   justify-content:center;
-  color:var(--muted);
-  font-weight:700;
+  font-weight:800;
+  font-size:18px;
+  color:rgba(255,255,255,0.9);
 }
-.actions{display:flex; justify-content:space-between; align-items:center; margin-top:12px;}
-.btn{
+
+.product-body{
+  padding:16px;
+}
+
+.product-body h3{
+  margin:0 0 8px;
+  font-size:18px;
+}
+
+.product-body p{
+  margin:0 0 14px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.product-body .price{
+  font-weight:800;
+  color:#fff;
+  margin-bottom:14px;
+}
+
+.product-body button{
+  width:100%;
   padding:10px 14px;
-  border-radius:8px;
   border:none;
+  border-radius:12px;
   background:var(--accent);
   color:#fff;
   cursor:pointer;
+  font-weight:700;
 }
 
 /* MODAL */
 .modal-bg{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.7);
   display:none;
   align-items:center;
   justify-content:center;
   z-index:200;
 }
+
 .modal{
-  background:#fff;
-  width:min(600px, 90%);
+  background:var(--card);
+  width:min(650px, 90%);
   padding:20px;
-  border-radius:12px;
+  border-radius:16px;
   box-shadow:var(--shadow);
 }
-.modal h2{margin-top:0;}
+
 .modal-close{
   float:right;
   cursor:pointer;
-  font-size:18px;
-}
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  margin:12px 0;
-  padding-bottom:12px;
-  border-bottom:1px solid #eee;
-}
-.cart-item input{
-  width:60px;
-  padding:6px;
+  font-size:22px;
+  color:var(--muted);
 }
 
-/* CHECKOUT */
-.checkout-btn{
-  margin-top:16px;
+.modal img{
   width:100%;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  background:#22c55e;
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
+  height:260px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:14px;
 }
+
+.modal h2{
+  margin:10px 0;
+}
+
+.modal p{
+  color:var(--muted);
+}
+
 </style>
 </head>
 <body>
@@ -191,44 +230,29 @@ body{margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-seri
 <div class="header">
   <div class="header-top">
     <div class="logo" onclick="goHome()">Bramium</div>
-
     <div class="search">
       <input id="search" placeholder="Search products..." oninput="filterProducts()">
     </div>
-
     <div class="header-right">
       <div onclick="openAccount()">Account</div>
       <div onclick="openOrders()">Orders</div>
-      <div id="cartOpen" onclick="openCart()">Cart (0)</div>
     </div>
-  </div>
-
-  <div class="navbar">
-    <div onclick="filterCategory('all')">All</div>
-    <div onclick="filterCategory('blueberry')">Blueberry</div>
-    <div onclick="filterCategory('strawberry')">Strawberry</div>
-    <div onclick="filterCategory('dragonfruit')">Dragon Fruit</div>
-    <div onclick="filterCategory('watermelon')">Watermelon</div>
   </div>
 </div>
 
 <!-- HERO -->
-<div class="hero" id="hero">
-  <div class="slides">
-    <div class="slide slide1">NEW ARRIVALS</div>
-    <div class="slide slide2">BEST SELLERS</div>
-    <div class="slide slide3">LIMITED OFFERS</div>
-  </div>
-  <button class="arrow prev" id="prev">&#10094;</button>
-  <button class="arrow next" id="next">&#10095;</button>
+<div class="hero">
+  <h1>3D Printed Fruit Lamps</h1>
+  <p>Soft glow, cute design, perfect for rooms and gifts.</p>
 </div>
 
-<!-- PROMO CARDS -->
-<div class="promo">
-  <div class="card"><h4>Free Shipping</h4><p>On all orders over $50</p></div>
-  <div class="card"><h4>New Designs</h4><p>Latest fruit lamps</p></div>
-  <div class="card"><h4>Bundle Deals</h4><p>Buy 2 get 1</p></div>
-  <div class="card"><h4>Gift Wrapping</h4><p>Available at checkout</p></div>
+<!-- CATEGORY BAR -->
+<div class="navbar">
+  <div onclick="filterCategory('all')">All</div>
+  <div onclick="filterCategory('blueberry')">Blueberry</div>
+  <div onclick="filterCategory('strawberry')">Strawberry</div>
+  <div onclick="filterCategory('dragonfruit')">Dragon Fruit</div>
+  <div onclick="filterCategory('watermelon')">Watermelon</div>
 </div>
 
 <!-- PRODUCTS -->
@@ -238,51 +262,34 @@ body{margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-seri
 
 <!-- MODAL -->
 <div class="modal-bg" id="modalBg">
-  <div class="modal" id="modal">
+  <div class="modal">
     <span class="modal-close" onclick="closeModal()">×</span>
     <div id="modalContent"></div>
   </div>
 </div>
 
 <script>
-let index=0;
-const slides=document.querySelector('.slides');
-const total=document.querySelectorAll('.slide').length;
-
-function showSlide(i){
-  index=(i+total)%total;
-  slides.style.transform=`translateX(-${index*100}%)`;
-}
-
-document.getElementById('prev').onclick = ()=> showSlide(index-1);
-document.getElementById('next').onclick = ()=> showSlide(index+1);
-setInterval(()=> showSlide(index+1), 4500);
-
 const products = [
-  { id: 1, name: "Blueberry Lamp", type: "blueberry", price: 25, desc: "Soft glowing blueberry lamp." },
-  { id: 2, name: "Strawberry Lamp", type: "strawberry", price: 27, desc: "Cute strawberry glow lamp." },
-  { id: 3, name: "Dragon Fruit Lamp", type: "dragonfruit", price: 30, desc: "Bright dragon fruit lamp." },
-  { id: 4, name: "Watermelon Lamp", type: "watermelon", price: 26, desc: "Fun watermelon glow lamp." },
+  { id: 1, name: "Blueberry Lamp", type: "blueberry", price: 25, desc: "Soft glowing blueberry lamp. Perfect for bedside lighting.", img: "https://via.placeholder.com/600x400/7c3aed/ffffff?text=Blueberry" },
+  { id: 2, name: "Strawberry Lamp", type: "strawberry", price: 27, desc: "Cute strawberry glow lamp. Adds a warm vibe to your room.", img: "https://via.placeholder.com/600x400/ef4444/ffffff?text=Strawberry" },
+  { id: 3, name: "Dragon Fruit Lamp", type: "dragonfruit", price: 30, desc: "Bright dragon fruit lamp. Stylish and unique.", img: "https://via.placeholder.com/600x400/22c55e/ffffff?text=Dragon+Fruit" },
+  { id: 4, name: "Watermelon Lamp", type: "watermelon", price: 26, desc: "Fun watermelon glow lamp. Great for gifts.", img: "https://via.placeholder.com/600x400/34d399/ffffff?text=Watermelon" },
 ];
 
-let cart = [];
-let orders = [];
-
-const productsEl=document.getElementById('products');
+const productsEl = document.getElementById('products');
 
 function renderProducts(list){
   productsEl.innerHTML = '';
   list.forEach(p=>{
-    const card=document.createElement('div');
-    card.className='product';
-    card.innerHTML=`
+    const card = document.createElement('div');
+    card.className = 'product';
+    card.innerHTML = `
       <div class="product-img">${p.type.toUpperCase()}</div>
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-      <div class="actions">
-        <div>$${p.price}</div>
-        <button class="btn" onclick="openProduct(${p.id})">View</button>
-        <button class="btn" onclick="addToCart(${p.id})">Add</button>
+      <div class="product-body">
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <div class="price">$${p.price}</div>
+        <button onclick="openProduct(${p.id})">View Product</button>
       </div>
     `;
     productsEl.appendChild(card);
@@ -290,11 +297,6 @@ function renderProducts(list){
 }
 
 renderProducts(products);
-
-function goHome(){
-  filterCategory('all');
-  document.getElementById('search').value = '';
-}
 
 function filterProducts(){
   const q = document.getElementById('search').value.toLowerCase();
@@ -307,108 +309,13 @@ function filterCategory(cat){
   else renderProducts(products.filter(p => p.type === cat));
 }
 
-function updateCartCount(){
-  const count = cart.reduce((s,i)=>s+i.qty,0);
-  document.getElementById('cartOpen').innerText = `Cart (${count})`;
-}
-
-function addToCart(id){
-  const product=products.find(p=>p.id===id);
-  const existing=cart.find(x=>x.id===id);
-  if(existing) existing.qty++;
-  else cart.push({...product, qty:1});
-  updateCartCount();
-}
-
-function openCart(){
-  const content = document.getElementById('modalContent');
-  if(cart.length === 0){
-    content.innerHTML = `<h2>Cart</h2><p>Your cart is empty.</p>`;
-  } else {
-    let html = `<h2>Cart</h2>`;
-    cart.forEach(item => {
-      html += `
-        <div class="cart-item">
-          <div>
-            <b>${item.name}</b><br>
-            $${item.price} each
-          </div>
-          <div>
-            Qty: <input type="number" value="${item.qty}" min="1" onchange="updateQty(${item.id}, this.value)">
-            <button class="btn" style="background:#ef4444;" onclick="removeFromCart(${item.id})">Remove</button>
-          </div>
-        </div>
-      `;
-    });
-
-    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-    html += `<p><b>Total: $${total.toFixed(2)}</b></p>`;
-    html += `<button class="checkout-btn" onclick="checkout()">Checkout</button>`;
-    content.innerHTML = html;
-  }
-  openModal();
-}
-
-function updateQty(id, qty){
-  const item = cart.find(x=>x.id===id);
-  if(item){
-    item.qty = Number(qty);
-    updateCartCount();
-    openCart();
-  }
-}
-
-function removeFromCart(id){
-  cart = cart.filter(x=>x.id!==id);
-  updateCartCount();
-  openCart();
-}
-
-function checkout(){
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  orders.push({ id: orders.length + 1, items: [...cart], total, date: new Date().toLocaleString() });
-  cart = [];
-  updateCartCount();
-  closeModal();
-  alert("Order placed successfully!");
-}
-
-function openOrders(){
-  const content = document.getElementById('modalContent');
-  if(orders.length === 0){
-    content.innerHTML = `<h2>Orders</h2><p>No orders yet.</p>`;
-  } else {
-    let html = `<h2>Orders</h2>`;
-    orders.forEach(o => {
-      html += `<div class="card" style="margin-bottom:10px;">
-        <b>Order #${o.id}</b><br>
-        Total: $${o.total.toFixed(2)}<br>
-        Date: ${o.date}
-      </div>`;
-    });
-    content.innerHTML = html;
-  }
-  openModal();
-}
-
-function openAccount(){
-  const content = document.getElementById('modalContent');
-  content.innerHTML = `
-    <h2>Account</h2>
-    <p>Account features will be added later.</p>
-    <p>(Login, profile, addresses, etc.)</p>
-  `;
-  openModal();
-}
-
 function openProduct(id){
-  const p = products.find(x=>x.id===id);
-  const content = document.getElementById('modalContent');
-  content.innerHTML = `
+  const p = products.find(x => x.id === id);
+  document.getElementById('modalContent').innerHTML = `
+    <img src="${p.img}" alt="${p.name}">
     <h2>${p.name}</h2>
     <p>${p.desc}</p>
     <p><b>Price: $${p.price}</b></p>
-    <button class="btn" onclick="addToCart(${p.id}); closeModal();">Add to Cart</button>
   `;
   openModal();
 }
@@ -418,6 +325,19 @@ function openModal(){
 }
 function closeModal(){
   document.getElementById('modalBg').style.display = 'none';
+}
+
+function goHome(){
+  filterCategory('all');
+  document.getElementById('search').value = '';
+}
+
+function openAccount(){
+  alert("Account features will be added later.");
+}
+
+function openOrders(){
+  alert("Orders features will be added later.");
 }
 </script>
 </body>
